@@ -1,0 +1,37 @@
+{% extends 'firstPage/baseFirstPage.html.twig' %}
+
+{# {% block title %}{% endblock %} #}
+
+{% block stylesheets %}
+<link href="{{ asset('CSS/firstPage/firstPageLogin.css') }}" rel="stylesheet" />
+<link href="{{ asset('CSS/firstPage/firstPageNav.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+
+    <section class="loginForm">
+        <h2> Panel Logowania </h2>
+
+            
+        <div class="iconWithInput">
+            <div class="icon-ph"><i class="fas fa-user-lock"></i></div>
+            <input type="email" placeholder="Adres email" onfocus="this.placeholder=''" onblur="this.placeholder='Adres email'" required>
+        </div>
+
+
+           
+        <div class="iconWithInput">
+            <div class="icon-ph"><i class="fas fa-key"></i></div>
+            <input type="password" placeholder="Hasło" onfocus="this.placeholder=''" onblur="this.placeholder='Hasło'" required>
+        </div>  
+            
+
+        <button type="button" id="submitMail" class="btn wave">ZALOGUJ SIĘ</button>
+
+        <!-- <div class="error"><i class="fas fa-exclamation-triangle"></i> Błędne dane logowania </div>  -->
+
+        <div class="link"><a href="/">Zapomniałem hasła</a></div>
+        <div class="link"><a href="/">Załóż konto</a></div>
+    </section> 
+
+{% endblock %}
