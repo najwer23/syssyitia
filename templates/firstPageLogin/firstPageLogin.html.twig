@@ -13,22 +13,28 @@
         <h2> Panel Logowania </h2>
 
             
+        <form action="{{ path('login') }}" method="post">
         <div class="iconWithInput">
             <div class="icon-ph"><i class="fas fa-user-lock"></i></div>
-            <input type="email" placeholder="Adres email" onfocus="this.placeholder=''" onblur="this.placeholder='Adres email'" required>
+            <input type="text" name="_username" value="{{ last_username }}" placeholder="Adres email" onfocus="this.placeholder=''" onblur="this.placeholder='Adres email'">
         </div>
 
 
            
         <div class="iconWithInput">
             <div class="icon-ph"><i class="fas fa-key"></i></div>
-            <input type="password" placeholder="Hasło" onfocus="this.placeholder=''" onblur="this.placeholder='Hasło'" required>
+            <input type="password" name="_password" placeholder="Hasło" onfocus="this.placeholder=''" onblur="this.placeholder='Hasło'">
         </div>  
             
 
-        <button type="button" id="submitMail" class="btn wave">ZALOGUJ SIĘ</button>
+        <button type="submit" id="submitMail" class="btn wave">ZALOGUJ SIĘ</button>
 
-        <!-- <div class="error"><i class="fas fa-exclamation-triangle"></i> Błędne dane logowania </div>  -->
+        {% if error %}
+            <div class="error">
+                <i class="fas fa-exclamation-triangle"></i> Błędne dane logowania!
+            </div> 
+        {% endif %}
+        </form>
 
         <div class="link"><a href="/">Zapomniałem hasła</a></div>
         <div class="link"><a href="/">Załóż konto</a></div>
