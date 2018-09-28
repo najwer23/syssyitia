@@ -25,7 +25,7 @@ class RegisterController extends AbstractController
     /**
      * @Route("/register", name="register")
      */
-    public function register(ObjectManager $manager, UserPasswordEncoderInterface $passwordEncoder)
+    public function register(ObjectManager $manager, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer)
     {
         $username="";
         $email="";
@@ -84,22 +84,36 @@ class RegisterController extends AbstractController
                         }
                     } 
                     else{
+
+                        //salt
+                        $token=md5(uniqid());
                         
+                        // set user
                         $user = new User();
                         $encoded = $this->encoder->encodePassword($user, $pass);
                         $user->setPassword($encoded);
                         $user->setUsername($username);
                         $user->setEmail($email);
                         $user->setIsActive('0');
+                        $user->setActiveTokenMail($token);
 
+                        //set to database
                         $manager->persist($user);
                         $manager->flush();
                         
+                        //set session
                         $session = new Session();
                         $session->set('token', '42');
                         $session->set('email', $email);
                         $session->set('username', $username);
 
+                        //send email with active link
+                        $body="Aktywuj konto: "."http://syssitia/active-account?token=".$token."";
+                        $message = (new \Swift_Message("Aktywacja konta w serwisie Syssitia App"))
+                          ->setFrom(['syssitiaapp@gmail.com' => 'Syssitia App'])
+                          ->setTo($email)
+                          ->setBody($body);
+                        $mailer->send($message);  
                       
                         return $this->redirectToRoute('RegisterAfter', array(
                                 // 'tokenRegisterAfter' => '42',

@@ -38,6 +38,11 @@ class User implements UserInterface, \Serializable
      */
     private $isActive;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $activeTokenMail;
+
     // public function __construct()
     // {
     //     $this->isActive = true;
@@ -137,5 +142,17 @@ class User implements UserInterface, \Serializable
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized, array('allowed_classes' => false));
+    }
+
+    public function getActiveTokenMail(): ?string
+    {
+        return $this->activeTokenMail;
+    }
+
+    public function setActiveTokenMail(string $activeTokenMail): self
+    {
+        $this->activeTokenMail = $activeTokenMail;
+
+        return $this;
     }
 }
