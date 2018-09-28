@@ -97,6 +97,9 @@ class RegisterController extends AbstractController
                         
                         $session = new Session();
                         $session->set('token', '42');
+                        $session->set('email', $email);
+                        $session->set('username', $username);
+
                       
                         return $this->redirectToRoute('RegisterAfter', array(
                                 // 'tokenRegisterAfter' => '42',
@@ -122,16 +125,23 @@ class RegisterController extends AbstractController
      /**
      * @Route("/register-after", name="RegisterAfter")
      */
-    public function afterRegister(Request $request)
-    {        
+    public function afterRegister()
+    {      
+        //$data1 = $request->get('email');  
         $session = new Session();
         $token=$session->get('token');
+        $email=$session->get('email');
+        $username=$session->get('username');
+       
         $session->set('token', '0');
+        $session->set('username', '0');
+        $session->set('email', '0');
         
-
         return $this->render('firstPageLogin/firstPageRegisterAfter.html.twig', array(
            'namePage' => 'After Register',
            'redirect' => $token,
+           'email' => $email,
+           'username' => $username,
         ));
     }
 }
