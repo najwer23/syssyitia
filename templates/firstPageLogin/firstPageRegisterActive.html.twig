@@ -20,24 +20,12 @@
 
 <body>
     
-    {% if redirect == 0 %}
-       <script>
-            window.location.replace("/");
-       </script>
-    {% else %}
-        <section class="infoRegisterAfter">
-            <div class="info">
-                <p>Użytkowniku!</p>
-                <p class="red">{{username}}</p>
-                <p>Na podany adres email:</p>
-                <p class="red">{{email}}</p>
-                <p>wysłano link aktywacyjny!</p>
-                <p>Sprawdź swoją pocztę żeby dokończyć rejestrację!</p>
-            </div>
-            <div class="link"><a href="/">Strona główna</a></div>
-            <div class="link"><a href="/login">Zaloguj się!</a></div>
-        </section>
-    {% endif %}
-
-</body>
+    <section class="infoRegisterAfter">
+        <div class="info">
+            <p><i class="fas fa-lg fa-star"></i> Konto zostało aktywowane! <i class="fas fa-lg fa-star"></i></p>
+        </div>
+        <div class="link"><a href="/">Strona główna</a></div>
+        <div class="link"><a href="/login">Zaloguj się!</a></div>
+    </section>
+   
 </html>

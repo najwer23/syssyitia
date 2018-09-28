@@ -158,4 +158,22 @@ class RegisterController extends AbstractController
            'username' => $username,
         ));
     }
+
+    /**
+    * @Route("/active-account", name="active-account")
+    */
+    public function activeAccount(ObjectManager $manager, Request $request)
+    {      
+        $token = $request->get('token');  
+        
+        $query = $this->getDoctrine()->getRepository(User::class);
+        $user = $query->findOneBy(['activeTokenMail' => $token]);
+            
+        $user->setIsActive(true);
+        $manager->flush();
+
+        return $this->render('firstPageLogin/firstPageRegisterActive.html.twig', array(
+           'namePage' => 'Active Msg',
+        ));
+    }
 }
