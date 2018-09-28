@@ -108,7 +108,7 @@ class RegisterController extends AbstractController
                         $session->set('username', $username);
 
                         //send email with active link
-                        $body="Aktywuj konto: "."http://syssitia/active-account?token=".$token."";
+                        $body="Wiadomość automatyczna. Proszę na nią nie odpowiadać. Aktywuj konto: "."http://syssitia/active-account?token=".$token."";
                         $message = (new \Swift_Message("Aktywacja konta w serwisie Syssitia App"))
                           ->setFrom(['syssitiaapp@gmail.com' => 'Syssitia App'])
                           ->setTo($email)
