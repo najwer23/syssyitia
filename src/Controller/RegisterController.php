@@ -169,9 +169,18 @@ class RegisterController extends AbstractController
         $query = $this->getDoctrine()->getRepository(User::class);
         $user = $query->findOneBy(['activeTokenMail' => $token]);
             
-        $user->setIsActive(true);
-        $manager->flush();
-
+        if(!$user)
+        {
+            return $this->render('firstPage/firstPageIndex.html.twig', [ 
+                'namePage' => 'Syssitia App',
+            ]);
+        } 
+        else
+        {
+            $user->setIsActive(true);
+            $manager->flush();
+        }
+       
         return $this->render('firstPageLogin/firstPageRegisterActive.html.twig', array(
            'namePage' => 'Active Msg',
         ));
