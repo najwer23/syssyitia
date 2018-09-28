@@ -115,7 +115,7 @@ class RegisterController extends AbstractController
                           ->setBody($body);
                         $mailer->send($message);  
                       
-                        return $this->redirectToRoute('RegisterAfter', array(
+                        return $this->redirectToRoute('registerAfter', array(
                                 // 'tokenRegisterAfter' => '42',
                             ));
                     }  
@@ -137,7 +137,7 @@ class RegisterController extends AbstractController
 
 
      /**
-     * @Route("/register-after", name="RegisterAfter")
+     * @Route("/register-after", name="registerAfter")
      */
     public function afterRegister()
     {      
