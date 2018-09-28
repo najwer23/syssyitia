@@ -166,8 +166,8 @@ class RegisterController extends AbstractController
     {      
         $token = $request->get('token');  
         
-        // $query = $this->getDoctrine()->getRepository(User::class);
-        // $user = $query->findOneBy(['activeTokenMail' => $token]);
+        $query = $this->getDoctrine()->getRepository(User::class);
+        $user = $query->findOneBy(['activeTokenMail' => $token]);
             
         $user->setIsActive(true);
         $manager->flush();
