@@ -41,16 +41,16 @@ class RegisterController extends AbstractController
                 $email=$_POST["email"];
                 $pass=$_POST["pass"];
                 $pass2=$_POST["pass2"];
-                
-                if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-                {
-                    $error="Niepoprawny adres email";
-                    $errorCode=1;
-                }
-               
+                               
                 if ((!($pass==$pass2)) || empty($pass))
                 {
                     $error="Hasła nie są takie same!";
+                    $errorCode=1;
+                }
+
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+                {
+                    $error="Niepoprawny adres email";
                     $errorCode=1;
                 }
 
