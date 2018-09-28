@@ -1,0 +1,66 @@
+{% extends 'firstPage/baseFirstPage.html.twig' %}
+
+{# {% block title %}{% endblock %} #}
+
+{% block stylesheets %}
+<link href="{{ asset('CSS/firstPage/firstPageLogin.css') }}" rel="stylesheet" />
+<link href="{{ asset('CSS/firstPage/firstPageNav.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+
+    <section class="loginForm">
+        <h2> Załóż konto! </h2>
+
+            
+        <form action="{{ path('register') }}" method="post">
+            
+            <div class="iconWithInput">
+                <div class="icon-ph"><i class="fas fa-user-lock"></i></div>
+                <input type="text" value="{{ _username }}" name="username" placeholder="Nick" onfocus="this.placeholder=''" onblur="this.placeholder='Nick'">
+            </div>
+            
+            <div class="iconWithInput">
+                <div class="icon-ph"><i class="fas fa-at"></i></div>
+                <input type="text" value="{{ _email }}" name="email" placeholder="Adres email" onfocus="this.placeholder=''" onblur="this.placeholder='Adres email'">
+            </div>
+
+            <div class="iconWithInput">
+                <div class="icon-ph"><i class="fas fa-key"></i></div>
+                <input type="password" name="pass" placeholder="Hasło" onfocus="this.placeholder=''" onblur="this.placeholder='Hasło'">
+            </div>  
+
+            <div class="iconWithInput">
+                <div class="icon-ph"><i class="fas fa-key"></i></div>
+                <input type="password" name="pass2" placeholder="Powtórz hasło" onfocus="this.placeholder=''" onblur="this.placeholder='Powtórz hasło'">
+            </div>  
+
+            <button type="submit" id="submitMail" name="btnRegister" class="btn wave">Załóż konto</button>
+
+            {% if errorCode|default(0) == 1 %}
+                <div class="error">
+                    <i class="fas fa-exclamation-triangle"></i> {{error|default(0) }}
+                </div> 
+            {% endif %}
+
+            {# csrf protection #}
+            {# <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"> #}
+
+             {#
+                If you want to control the URL the user
+                is redirected to on success (more details below)
+                <input type="hidden" name="_target_path" value="/account" />
+              #}
+
+            {# {% if error %}
+                <div class="error">
+                    <i class="fas fa-exclamation-triangle"></i> Błędne dane logowania!
+                </div> 
+            {% endif %} #}
+        </form>
+
+        {# <div class="link"><a href="/">Zapomniałem hasła</a></div>
+        <div class="link"><a href="/">Załóż konto</a></div> #}
+    </section> 
+
+{% endblock %}

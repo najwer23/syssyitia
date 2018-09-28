@@ -33,11 +33,19 @@
                 <h1 class="pc">Mariusz Najwer</h1>
             </div>
             {% else %}
-            <div class="childTitleApp">
-                <a class="undo" href="/">
-                    <h1><i class="fas fa-undo-alt"></i></h1>
-                </a>
-            </div>
+                {% if undo|default(0) == 0 %}
+                    <div class="childTitleApp">
+                        <a class="undo" href="/">
+                            <h1><i class="fas fa-undo-alt"></i></h1>
+                        </a>
+                    </div>
+                {% else %}
+                     <div class="childTitleApp">
+                        <a class="undo" href="/login">
+                            <h1><i class="fas fa-undo-alt"></i></h1>
+                        </a>
+                    </div>
+                {% endif %}
             {% endif %}
 
             <div class="childTitleApp">
