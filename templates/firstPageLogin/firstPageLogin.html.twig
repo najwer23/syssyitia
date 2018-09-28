@@ -14,26 +14,32 @@
 
             
         <form action="{{ path('login') }}" method="post">
-        <div class="iconWithInput">
-            <div class="icon-ph"><i class="fas fa-user-lock"></i></div>
-            <input type="text" name="_username" value="{{ last_username }}" placeholder="Adres email lub nick" onfocus="this.placeholder=''" onblur="this.placeholder='Adres email lub nick'">
-        </div>
+            <div class="iconWithInput">
+                <div class="icon-ph"><i class="fas fa-user-lock"></i></div>
+                <input type="text" name="_username" value="{{ last_username }}" placeholder="Adres email lub nick" onfocus="this.placeholder=''" onblur="this.placeholder='Adres email lub nick'">
+            </div>
 
+            <div class="iconWithInput">
+                <div class="icon-ph"><i class="fas fa-key"></i></div>
+                <input type="password" name="_password" placeholder="Hasło" onfocus="this.placeholder=''" onblur="this.placeholder='Hasło'">
+            </div>  
 
-           
-        <div class="iconWithInput">
-            <div class="icon-ph"><i class="fas fa-key"></i></div>
-            <input type="password" name="_password" placeholder="Hasło" onfocus="this.placeholder=''" onblur="this.placeholder='Hasło'">
-        </div>  
-            
+            <button type="submit" id="submitMail" class="btn wave">ZALOGUJ SIĘ</button>
 
-        <button type="submit" id="submitMail" class="btn wave">ZALOGUJ SIĘ</button>
+            {# csrf protection #}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        {% if error %}
-            <div class="error">
-                <i class="fas fa-exclamation-triangle"></i> Błędne dane logowania!
-            </div> 
-        {% endif %}
+             {#
+                If you want to control the URL the user
+                is redirected to on success (more details below)
+                <input type="hidden" name="_target_path" value="/account" />
+              #}
+
+            {% if error %}
+                <div class="error">
+                    <i class="fas fa-exclamation-triangle"></i> Błędne dane logowania!
+                </div> 
+            {% endif %}
         </form>
 
         <div class="link"><a href="/">Zapomniałem hasła</a></div>
