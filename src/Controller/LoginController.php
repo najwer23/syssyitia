@@ -204,6 +204,7 @@ class LoginController extends AbstractController
 
                     if(!$user)
                     {
+                       // hmmmmm i co teraz? zalozyc ze uzytkownik bedzie madry i sie domysli ze jego konto zostalo usuniete pomiedzy wysylaniem maili a pojawieniem sie formularza
                        $error="Upss.. Brak użytkownika w bazie!";
                        $errorCode=1;
                     } 
