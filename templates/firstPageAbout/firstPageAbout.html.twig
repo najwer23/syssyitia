@@ -3,10 +3,41 @@
 {# {% block title %}{% endblock %} #}
 
 {% block stylesheets %}
-<link href="{{ asset('CSS/firstPage/firstPageIndex.css') }}" rel="stylesheet" />
+<link href="{{ asset('CSS/posts/postAbout.css') }}" rel="stylesheet" />
 {% endblock %}
 
 {% block body %}
 
-    Uuups...
+<div class="postContainer">
+   
+            <div class="postPreTitle">
+                <h4>
+                    KILKA SŁÓW O&nbsp;PROJEKCIE
+                </h4>
+            </div>
+    <div class="postAbout">
+        <article>
+            <div class="postTitle">
+                <h2>
+                    DLACZEGO SYSSITIA?
+                </h2>
+            </div>
+            <div class="postAuthor">
+                <h5>
+                    <i class="fas fa-user-tie"></i> Mariusz Najwer | <i class="far fa-clock"></i> 1.10.2018r.
+                </h5>
+            </div>
+
+            <div class="postText">
+                <img src="{{ asset('IMG/bitbucket.png') }}" alt="https://xkcd.com/1296/" class="firstImg">  
+                <div class="link"><a  target="_blank" href="https://bitbucket.org/najwer23/syssitia-app/src/master/"><i class="fab fa-bitbucket"></i> Bitbucket!</a></div>
+                {# {# <p class="indent">ddsjhdjhjdhjdfhjdfcjdc ch j  dc hvj v  v  d dhd j  scv svj sknv dk v v vck vk ckv kvn vn vk k qv l vdq v link</p> #}
+                {# <p class="indent">ddsjhdjhjdhjdfhjdfcjdc ch j  dc hvj v  v  d dhd j  scv svj sknv dk v v vck vk ckv kvn vn vk k qv l vdq v link</p> #}
+                
+            </div>
+        </article>
+    </div>
+</div>
+
+
 {% endblock %}
