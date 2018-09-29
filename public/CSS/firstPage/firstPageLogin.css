@@ -1,9 +1,10 @@
 
 
 body{
+    background-color: #EFEFEF;
     /* background-color: #F0F1D5; */
     /* https: //www.toptal.com/designers/subtlepatterns/?s=sos */
-    background-image: url("../../IMG/s.png");
+    /* background-image: url("../../IMG/s.png"); */
 }
 
 
@@ -29,7 +30,7 @@ body{
 
 .loginForm h2 {
     margin-top: 0;
-    color: #0D67B1;
+    color: #3F5765;
 }
 
 
@@ -46,7 +47,8 @@ body{
     line-height: 50px;
     position: absolute;
     z-index: 3;
-    color: #333333;
+    /* color: #FF530D; */
+    color: #2B3A42;
 }
 
 
@@ -57,7 +59,7 @@ body{
     height: 48px;
     border: solid;
     border-width: 1px;
-    border-color: #FD7400;
+    border-color: #FF530D;
     border-left-color: transparent;
     border-right-color: transparent;
     border-top-color: transparent;
@@ -77,8 +79,8 @@ body{
 .loginForm input[type="email"]:focus,
 .loginForm input[type="password"]:focus,
 .loginForm input[type="text"]:focus {
-    border: 1px solid #FD7400;
-    outline: #FD7400;
+    border: 1px solid #FF530D;
+    outline: #FF530D;
 }
 
 
@@ -89,8 +91,8 @@ body{
 
 .btn {
     background-color: WHITE;
-    border: 1px solid #FD7400;
-    color: #FD7400;
+    border: 1px solid #FF530D;
+    color: #FF530D;
     cursor: pointer;
     align-self: center;
     font-size: 1rem;
@@ -102,10 +104,10 @@ body{
 }
 
 .btn:focus {
-    color: #FD7400;
+    color: #FF530D;
     /* background-image: linear-gradient(45deg, #FF5856 50%, transparent 50%); */
     outline: 0;
-    border-bottom: 2px solid #FD7400;
+    border-bottom: 2px solid #FF530D;
 }
 
 .btn:hover {
@@ -116,9 +118,9 @@ body{
 .wave {
     height: 50px;
     width: 302px;
-    border-color: #FD7400;
-    color: #FD7400;
-    background-image: linear-gradient(45deg, #FD7400 50%, transparent 50%);
+    border-color: #FF530D;
+    color: #FF530D;
+    background-image: linear-gradient(45deg, #FF530D 50%, transparent 50%);
     background-position: 100%;
     background-size: 400%;
     transition: background 300ms ease-in-out;
@@ -132,7 +134,7 @@ body{
     display: block;
     height: 50px;
     width: 302px;
-    background: #0D67B1;
+    background: #3F5765;
     text-decoration: none;
     line-height: 50px;
     margin-top: 15px;
@@ -144,7 +146,7 @@ body{
 }
 
 .link a:hover {
-    background: #0094B1;
+    background: #2B3A42;
     -webkit-transition: opacity 0.3s;
     -moz-transition: opacity 0.3s;
     -ms-transition: opacity 0.3s;
