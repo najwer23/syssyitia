@@ -10,7 +10,7 @@
 {% block body %}
 
     <section class="loginForm">
-        <h2> Przypomnij hasło! </h2>
+        <h2> Zmień hasło! </h2>
 
             
         <form action="{{ path('forgotPass') }}" method="post">
@@ -19,7 +19,7 @@
                 <input type="text" name="email"  placeholder="Adres email" onfocus="this.placeholder=''" onblur="this.placeholder='Adres email'">
             </div>
 
-            <button name="btnForgotPass" type="submit" id="submitMail" class="btn wave">Przypominij hasło</button>
+            <button name="btnForgotPass" type="submit" id="submitMail" class="btn wave">Zmień hasło</button>
 
             {% if errorCode|default(0) == 1 %}
                 <div class="error">
