@@ -115,6 +115,11 @@ body{
     outline: 0;
 }
 
+.btn:active{
+    color: green;
+    outline: 0;
+}
+
 .wave {
     height: 50px;
     width: 302px;

@@ -1,0 +1,33 @@
+{% extends 'firstPage/baseFirstPage.html.twig' %}
+
+{# {% block title %}{% endblock %} #}
+
+{% block stylesheets %}
+<link href="{{ asset('CSS/firstPage/firstPageLogin.css') }}" rel="stylesheet" />
+<link href="{{ asset('CSS/firstPage/firstPageNav.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+
+    <section class="loginForm">
+        <h2> Przypomnij hasło! </h2>
+
+            
+        <form action="{{ path('forgotPass') }}" method="post">
+            <div class="iconWithInput">
+                <div class="icon-ph"><i class="fas fa-at"></i></div>
+                <input type="text" name="email"  placeholder="Adres email" onfocus="this.placeholder=''" onblur="this.placeholder='Adres email'">
+            </div>
+
+            <button name="btnForgotPass" type="submit" id="submitMail" class="btn wave">Przypominij hasło</button>
+
+            {% if errorCode|default(0) == 1 %}
+                <div class="error">
+                    <i class="fas fa-exclamation-triangle"></i> {{error}}
+                </div> 
+            {% endif %}
+        </form>
+
+    </section> 
+
+{% endblock %}
