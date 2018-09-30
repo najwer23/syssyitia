@@ -39,7 +39,7 @@ class BlogController extends AbstractController
     public function page()
     {
         // ilosc wynikow na stronie 
-        $page=20;
+        $page=4;
         return $page;
     }
 
@@ -51,7 +51,7 @@ class BlogController extends AbstractController
     */
     public function showBlog()
     {
-        //liczba post�w
+        //liczba postow
         $numberOfPosts=$this->numberOfPosts();
 
         // liczba elementow na stronie
@@ -67,15 +67,16 @@ class BlogController extends AbstractController
             'namePage' => 'Syssitia App - Blog',
             'numberOfPages' => $numberOfPages,
             'footer' => '1',
+            'undo' => '-1',
         ]);
 
     }
 
 
     /**
-     * @Route("/blog/posts/{slug}", name="posts")
+     * @Route("/blog/page/{slug2}/post/{slug}", name="posts")
      */
-    public function showPost($slug)
+    public function showPost($slug, $slug2)
     {
         // znajdz post o danym id
         $post = $this->getDoctrine()->getRepository(Posts::class)->find($slug);
@@ -88,6 +89,12 @@ class BlogController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager(); 
         $post->setHits($hits);
         $entityManager->flush();
+
+        // pozdrawiam mas?owskiego
+        // link cofaj?cy z posta na stron?, poprawnie nawet po dodaniu nowego posta
+        $numberOfPosts=$this->numberOfPosts();
+        $page=$this->page();
+        $slug2=floor((($numberOfPosts-$slug)/$page)+1);
 
         //pobierz info o poscie i ustaw zmienne
         $topic=$post->getTopic();
@@ -103,7 +110,7 @@ class BlogController extends AbstractController
                
                'namePage' => 'Syssitia App - Blog - '.$topic,
                'undo' => '2',
-               'menuBlog' => '1',
+               'menuBlog' => $slug2,
                'nav' => '1',
                'footer' => '1',
            ]);
@@ -118,7 +125,7 @@ class BlogController extends AbstractController
         $prevPage=$slug-1;
         $nextPage=$slug+1;
 
-        //liczba postรณw
+        //liczba postow
         $numberOfPosts=$this->numberOfPosts();
 
         // liczba elementow na stronie
