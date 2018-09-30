@@ -1,4 +1,4 @@
-{% extends 'firstPage/baseFirstPage.html.twig' %}
+{% extends 'firstPageBlog/baseBlog.html.twig' %}
 
 {% block stylesheets %}
 <link href="{{ asset('CSS/firstPage/firstPageIndex.css') }}" rel="stylesheet" />
@@ -14,7 +14,7 @@
         {% for post in posts %}
           <li>
             
-            <a class="linkTitle" href="{{ path('posts', {'slug': post.id}) }}">
+            <a class="linkTitle" href="{{ path('posts', {'slug2':nextPage|default(2)-1 , 'slug':post.id} ) }}">
               <p class="beforeTitle">
                 <i class="far fa-clock"></i> {{ post.date|date("d.m.Y", "Europe/Berlin") }}r.   
                 
@@ -38,7 +38,7 @@
     <section class="pagination">
       
       {# w lewo #}
-      {% if nextPage|default(0)-1 == numberOfPages  %}
+      {% if nextPage|default(0)-1 == numberOfPages and numberOfPages !=1 %}
       <div class="pagination-slide">
         <a href="/blog/page/{{prevPage|default(1)}}"><div class="left-page"><i class="fas fa-angle-double-left"></i></div></a>
         <div class="number-page">Strona: {{nextPage|default(2)-1}}/{{numberOfPages}}</div>
@@ -47,7 +47,7 @@
       {% endif %}
           
       {# prawo #}
-      {% if  prevPage|default(0) == 0  and numberOfPages!=1 %}
+      {% if  prevPage|default(0) == 0  and numberOfPages !=1 %}
       <div class="pagination-slide" >
         <div class="empty"></div>
         <div class="number-page">Strona: {{nextPage|default(2)-1}}/{{numberOfPages}}</div>
