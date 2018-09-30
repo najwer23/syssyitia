@@ -1,0 +1,42 @@
+{% extends 'firstPage/baseFirstPage.html.twig' %}
+
+{% block stylesheets %}
+{# <link href="{{ asset('CSS/posts/post-base.css') }}" rel="stylesheet" /> #}
+{% endblock %}
+
+{% block javascripts %}{% endblock %}
+
+
+
+
+{% block body %}
+
+  <div class="container-post">
+    <section class="post">
+        
+        <div class="hits"><h6><i class="far fa-eye"></i> {{hits}}</h6></div>
+        <div class="post-title"><h3>{{topic}}</h3></div>
+        <div class="post-author">
+          <h5>
+            
+             <i class="fas fa-users"></i> Mariusz Najwer
+            {{date|date("d.m.Y", "Europe/Berlin")}} 
+            {% if date.diff( date("now") ).format('%a') == 0  %}
+              (dzisiaj)
+            {% elseif date.diff( date("now") ).format('%a') == 1 %}
+              (wczoraj)
+            {% else %}
+              ({{date.diff( date("now") ).format('%a')}} dni temu)
+            {% endif %}
+          </h5>
+        </div>
+        
+        {% include path %}
+
+
+    </section>
+  </div>
+
+{% endblock %}
+
+

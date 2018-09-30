@@ -32,20 +32,32 @@
             <div class="childTitleAppPC">
                 <h1 class="pc">Mariusz Najwer</h1>
             </div>
+
             {% else %}
+
                 {% if undo|default(0) == 0 %}
                     <div class="childTitleApp">
                         <a class="undo" href="/">
                             <h1><i class="fas fa-undo-alt"></i></h1>
                         </a>
                     </div>
-                {% else %}
+                {% endif %}
+
+                {% if undo|default(0) == 1 %}
                      <div class="childTitleApp">
                         <a class="undo" href="/login">
                             <h1><i class="fas fa-undo-alt"></i></h1>
                         </a>
                     </div>
                 {% endif %}
+
+
+                {% if menuBlog|default(0) == 1 %}
+                <div class="childTitleApp">
+                    <h1 class="blogMenu">Blog / #{{ idPost|default(0) }}</h1>
+                </div>
+                {% endif %}
+
             {% endif %}
 
             <div class="childTitleApp">
