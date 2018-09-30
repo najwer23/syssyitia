@@ -39,7 +39,7 @@ class BlogController extends AbstractController
     public function page()
     {
         // ilosc wynikow na stronie 
-        $page=1;
+        $page=20;
         return $page;
     }
 
@@ -51,7 +51,7 @@ class BlogController extends AbstractController
     */
     public function showBlog()
     {
-        //liczba postÃ³w
+        //liczba postów
         $numberOfPosts=$this->numberOfPosts();
 
         // liczba elementow na stronie
@@ -66,6 +66,7 @@ class BlogController extends AbstractController
             'nav' => '1',
             'namePage' => 'Syssitia App - Blog',
             'numberOfPages' => $numberOfPages,
+            'footer' => '1',
         ]);
 
     }
@@ -103,7 +104,8 @@ class BlogController extends AbstractController
                'namePage' => 'Syssitia App - Blog - '.$topic,
                'undo' => '2',
                'menuBlog' => '1',
-               'nav' => '1'
+               'nav' => '1',
+               'footer' => '1',
            ]);
     }
 
@@ -133,6 +135,7 @@ class BlogController extends AbstractController
             'numberOfPages' => $numberOfPages,
             'prevPage' => $prevPage,
             'nextPage' => $nextPage,
+            'footer' => '1',
         ]);
 
     }
