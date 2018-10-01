@@ -122,6 +122,12 @@ class BlogController extends AbstractController
      */
     public function showPage($slug)
     {
+        if($slug==1)
+        {
+             return $this->redirectToRoute('blog', array(
+            ));
+        }
+        
         $prevPage=$slug-1;
         $nextPage=$slug+1;
 
