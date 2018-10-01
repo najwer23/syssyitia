@@ -102,9 +102,15 @@ class LoginController extends AbstractController
                           ->setBody($body);
                         $mailer->send($message);
 
-                        return $this->redirectToRoute('forgotPassAfter', array(
+                        if ($mailer->send($message))
+                        {
+                            return $this->redirectToRoute('forgotPassAfter', array(
                                 // 'tokenRegisterAfter' => '42',
-                        ));
+                            ));
+                       
+                        }
+
+                        
 
                     }
                 }

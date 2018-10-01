@@ -16,7 +16,13 @@
         <link href="{{asset('CSS/firstPage/firstPageNav.css') }}" rel="stylesheet" />
        
         {% if footer|default(0) == 1 %}
-        <link href="{{asset('CSS/footer.css') }}" rel="stylesheet" />
+            <link href="{{asset('CSS/footer.css') }}" rel="stylesheet" />
+        {% endif %}
+
+        {% if app.user %}
+            <link href="{{asset('CSS/user/userNav.css') }}" rel="stylesheet" />
+            <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+            <script src="{{asset('JS/jQuery/hamburger/hamburger.js')}}"></script>
         {% endif %}
 
         <style>img[alt*="www.000webhost.com"] {display: none;}</style>
@@ -25,52 +31,105 @@
 
     </head>
     <body>
-
+ 
         {% if app.user %}
-        
-        okey innne menu dla uzytkownika zalogowanego
+             
+            <div class="fat-nav">
+                <div class="wrapper">
+                    <ul>
+                    
+                        <a class="fat-nav-link" href="">
+                            <li> Push-Up</li>
+                        </a>
+                        <a class="fat-nav-link" href="">
+                            <li> Squats</li>
+                        </a>
+                        <a class="fat-nav-link" href="">
+                            <li> Crunches</li>
+                        </a>
+                        <a class="fat-nav-link" href="">
+                            <li> Pull-Up</li>
+                        </a>
+
+                        <a class="fat-nav-link" href="/blog">
+                            <li><i class="fas fa-gift"></i> Blog</li>
+                        </a>
+
+                        <br>
+                        <a class="fat-nav-link" href="/profil">
+                            <li><i class="far fa-user"></i> {{ app.user.username }}</li>
+                        </a>
+
+                        <a class="fat-nav-link" href="/logout">
+                            <li><i class="fas fa-sign-out-alt"></i> Sign Out</li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+
+            <nav class="titleApp">
+
+                <div class="childTitleAppHam">
+                    <h1 class="pc">{{ app.user.username }} / blog</h1>
+                </div>
+
+                <div class="childTitleApp">
+                    <h1><i class="fas fa-heartbeat"></i> Syssitia App</h1>
+                </div>
+
+                <div class="childTitleAppPC">
+                    <ul class="socialHam">
+                        <li><a class="fb" href="https://www.facebook.com/profile.php?id=100006447601968" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a class="g" target="_blank" href="https://plus.google.com/+MariuszNajwer23"><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a class="lin" target="_blank" href="https://www.linkedin.com/in/najwer23/"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a class="twit" target="_blank" href="https://twitter.com/najwer23"><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                </div>
+
+            </nav>
 
 
         {% else %}
-        <nav class="titleApp">
 
-            {% if undo|default(0) == -1 or numberOfPages|default(0) == 1 %}
+            <nav class="titleApp">
+
+                {% if undo|default(0) == -1 or numberOfPages|default(0) == 1 %}
+                    <div class="childTitleApp">
+                        <a class="undo" href="/">
+                            <h1><i class="fas fa-undo-alt"></i></h1>
+                        </a>
+                    </div>
+                {% endif %}
+
+                {% if undo|default(0) == 0 %}
+                    <div class="childTitleApp">
+                        <a class="undo" href="/blog">
+                            <h1><i class="fas fa-undo-alt"></i></h1>
+                        </a>
+                    </div>
+                {% endif %}
+
+                {% if menuBlog|default(0) > 0 and numberOfPages|default(0) != 1 %}
+                    <div class="childTitleApp">
+                        <a class="undo" href="/blog/page/{{menuBlog}}">
+                            <h1><i class="fas fa-undo-alt"></i></h1>
+                        </a>
+                    </div>
+                {% endif %}
+
                 <div class="childTitleApp">
-                    <a class="undo" href="/">
-                        <h1><i class="fas fa-undo-alt"></i></h1>
-                    </a>
+                    <h1><i class="fas fa-heartbeat"></i> Syssitia App</h1>
                 </div>
-            {% endif %}
 
-            {% if undo|default(0) == 0 %}
-                <div class="childTitleApp">
-                    <a class="undo" href="/blog">
-                        <h1><i class="fas fa-undo-alt"></i></h1>
-                    </a>
+                <div class="childTitleAppPC">
+                    <ul class="social">
+                        <li><a class="fb" href="https://www.facebook.com/profile.php?id=100006447601968" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a class="g" target="_blank" href="https://plus.google.com/+MariuszNajwer23"><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a class="lin" target="_blank" href="https://www.linkedin.com/in/najwer23/"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a class="twit" target="_blank" href="https://twitter.com/najwer23"><i class="fab fa-twitter"></i></a></li>
+                    </ul>
                 </div>
-            {% endif %}
-
-            {% if menuBlog|default(0) > 0 and numberOfPages|default(0) != 1 %}
-                <div class="childTitleApp">
-                    <a class="undo" href="/blog/page/{{menuBlog}}">
-                        <h1><i class="fas fa-undo-alt"></i></h1>
-                    </a>
-                </div>
-            {% endif %}
-
-            <div class="childTitleApp">
-                <h1><i class="fas fa-heartbeat"></i> Syssitia App</h1>
-            </div>
-
-            <div class="childTitleAppPC">
-                <ul class="social">
-                    <li><a class="fb" href="https://www.facebook.com/profile.php?id=100006447601968" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a class="g" target="_blank" href="https://plus.google.com/+MariuszNajwer23"><i class="fab fa-google-plus-g"></i></a></li>
-                    <li><a class="lin" target="_blank" href="https://www.linkedin.com/in/najwer23/"><i class="fab fa-linkedin"></i></a></li>
-                    <li><a class="twit" target="_blank" href="https://twitter.com/najwer23"><i class="fab fa-twitter"></i></a></li>
-                </ul>
-            </div>
-        </nav>
+            </nav>
         {% endif %}
 
         {% block body %}{% endblock %}
@@ -85,6 +144,10 @@
                 </div>
                 <div class="endline"></div>
             </footer>
+        {% endif %}
+
+        {% if app.user %}
+            <script src="{{ asset('JS/jQuery/hamburger/showHamburgerMenu.js')}}"></script>
         {% endif %}
 
         {% block javascripts %}{% endblock %}
