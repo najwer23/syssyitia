@@ -47,7 +47,6 @@ class LoginController extends AbstractController
      */
     public function logout()
     {
-    
     }
 
 
@@ -90,11 +89,12 @@ class LoginController extends AbstractController
                         $manager->flush();
 
                         $session = new Session();
+                        $session->clear();
                         $session->set('email', $email);
                         $session->set('token', '42');
 
                         //send email with active link
-                        $body="Wiadomość automatyczna. Proszę na nią nie odpowiadać. Została aktywowana procedura przypominania hasła. Jeśli nie chcesz zmieniać hasła zignoruj wiadomość. Przekierowanie do strony głównej serwisu oznacza, że link wygasł. Należy wygenerować nowy. Przypomnij hasło: "."http://syssitia/forgot-pass-account?token=".$token."";
+                        $body="Wiadomość automatyczna. Proszę na nią nie odpowiadać. Została aktywowana procedura przypominania hasła. Jeśli nie chcesz zmieniać hasła zignoruj wiadomość. Przekierowanie do strony głównej serwisu oznacza, że link wygasł. Należy wygenerować nowy. Przypomnij hasło: "."http://syssitia/forgot-pass-account/".$token."";
 
                         $message = (new \Swift_Message("Przypomnij hasło - Syssitia App"))
                           ->setFrom(['syssitiaapp@gmail.com' => 'Syssitia App'])
@@ -151,11 +151,11 @@ class LoginController extends AbstractController
 
 
     /**
-     * @Route("/forgot-pass-account", name="forgotPassAccount")
+     * @Route("/forgot-pass-account/{token2}", name="forgotPassAccount")
      */
-    public function forgotPassAccount(ObjectManager $manager, Request $request)
+    public function forgotPassAccount(ObjectManager $manager, $token2)
     {       
-        $token = $request->get('token');  
+        $token =  $token2;
 
         $query = $this->getDoctrine()->getRepository(User::class);
         $user = $query->findOneBy(['activeTokenMail' => $token]);
