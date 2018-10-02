@@ -47,6 +47,7 @@ class LoginController extends AbstractController
      */
     public function logout()
     {
+    
     }
 
 
@@ -89,14 +90,13 @@ class LoginController extends AbstractController
                         $manager->flush();
 
                         $session = new Session();
-                        $session->clear();
                         $session->set('email', $email);
                         $session->set('token', '42');
 
                         //send email with active link
                         $body="Wiadomość automatyczna. Proszę na nią nie odpowiadać. Została aktywowana procedura przypominania hasła. Jeśli nie chcesz zmieniać hasła zignoruj wiadomość. Przekierowanie do strony głównej serwisu oznacza, że link wygasł. Należy wygenerować nowy. Przypomnij hasło: "."http://syssitia/forgot-pass-account/".$token."";
 
-                        $message = (new \Swift_Message("Przypomnij hasło - Syssitia App"))
+                        $message = (new \Swift_Message("Zmień swoje hasło - Syssitia App"))
                           ->setFrom(['syssitiaapp@gmail.com' => 'Syssitia App'])
                           ->setTo($email)
                           ->setBody($body);
@@ -151,21 +151,20 @@ class LoginController extends AbstractController
 
 
     /**
-     * @Route("/forgot-pass-account/{token2}", name="forgotPassAccount")
+     * @Route("/forgot-pass-account/{tokenFromEmail}", name="forgotPassAccount")
      */
-    public function forgotPassAccount(ObjectManager $manager, $token2)
+    public function forgotPassAccount(ObjectManager $manager, $tokenFromEmail)
     {       
-        $token =  $token2;
-
+        $token = $tokenFromEmail;  
         $query = $this->getDoctrine()->getRepository(User::class);
         $user = $query->findOneBy(['activeTokenMail' => $token]);
 
         if(!$user)
         {
             // upps nie ma uzytkownika, redirect
-            return $this->render('firstPage/firstPageIndex.html.twig', [ 
-                'namePage' => 'Syssitia App',
-            ]);
+             return $this->redirectToRoute('firstPage', array(
+                 'namePage' => 'Syssitia App',
+            ));
         } 
         else
         {
@@ -173,7 +172,6 @@ class LoginController extends AbstractController
             $session->set('token', $token);
             return $this->redirectToRoute('changePass', array(
             ));
-
         }
         
     }
@@ -210,13 +208,11 @@ class LoginController extends AbstractController
 
                     if(!$user)
                     {
-                       // hmmmmm i co teraz? zalozyc ze uzytkownik bedzie madry i sie domysli ze jego konto zostalo usuniete pomiedzy wysylaniem maili a pojawieniem sie formularza
                        $error="Upss.. Brak użytkownika w bazie!";
                        $errorCode=1;
                     } 
                     else
                     {
-                       
                         $session->set('token', '0');
                         $encoded = $this->encoder->encodePassword($user, $pass);
                         $user->setPassword($encoded);
@@ -240,12 +236,11 @@ class LoginController extends AbstractController
         return $this->render('firstPageLogin/firstPageChangePass.html.twig', array(
            'namePage' => 'After Forgot Pass',
            'nav' => '1',
-           'redirect' => $token,
+           'redirect' => 1,
            'error' => $error,
            'errorCode' => $errorCode,
         ));
     }
-
 
     /**
      * @Route("/change-pass-after", name="changePassAfter")
