@@ -104,7 +104,7 @@ function playTimer() {
         valueFromTimer = valueFromTimerCopy;
         document.getElementById("timer").innerHTML = valueFromTimer;
 
-        const sound = new Audio("../Music/b.mp3");
+        const sound = new Audio('../../Music/b.mp3');
         sound.play();
 
         fastStep();

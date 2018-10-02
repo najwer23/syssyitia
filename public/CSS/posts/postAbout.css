@@ -51,6 +51,10 @@
     text-align: justify;
 }
 
+.advantages li {
+    margin-left: -15px;
+}
+
 .source li{
     margin-left: -15px;
     word-break: break-all;
