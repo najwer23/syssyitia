@@ -35,7 +35,7 @@ class RegisterController extends AbstractController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            if (isset($_POST['btnRegister'])) {
+            if (isset($_POST['email'])) {
                 
                 $username=$_POST["username"];
                 $email=$_POST["email"];

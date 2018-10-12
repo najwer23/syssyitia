@@ -62,7 +62,7 @@ class LoginController extends AbstractController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            if (isset($_POST['btnForgotPass'])) {
+            if (isset($_POST['email'])) {
                 
                 $email=$_POST['email'];
 

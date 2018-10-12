@@ -11,6 +11,8 @@ $(document).ready(function () {
         if (email != 0 && name != 0 && surname != 0 && topic != 0 && text != 0) {
             $('.animation').show();
             $('.animation2').show();
+            document.getElementById("submitMail").disabled = true;
+
             $('#infoFromAjaxFirstPageContact').hide();
             $.ajax({
                 type: "POST",
@@ -36,6 +38,7 @@ $(document).ready(function () {
                     $('#infoFromAjaxFirstPageContact').show();
                     $("#infoFromAjaxFirstPageContact").html(output);
                     email = $('input[name="email"]').val('');
+                    document.getElementById("submitMail").disabled = false;
                 },
             });
         } else {

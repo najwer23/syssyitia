@@ -15,6 +15,7 @@
         
         <link href="{{asset('CSS/firstPage/firstPageNav.css') }}" rel="stylesheet" />
        
+
         {% if footer|default(0) == 1 %}
         <link href="{{asset('CSS/footer.css') }}" rel="stylesheet" />
         {% endif %}
@@ -22,6 +23,7 @@
         <style>img[alt*="www.000webhost.com"] {display: none;}</style>
         
         {% block stylesheets %}{% endblock %}
+        {% block javascripts %}{% endblock %}
 
     </head>
     <body>
@@ -80,7 +82,7 @@
             </footer>
         {% endif %}
 
-        {% block javascripts %}{% endblock %}
+        
     </body>
 
    

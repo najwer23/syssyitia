@@ -7,6 +7,11 @@
 <link href="{{ asset('CSS/firstPage/firstPageNav.css') }}" rel="stylesheet" />
 {% endblock %}
 
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+{% endblock %}
+
+
 {% block body %}
 
     <section class="loginForm">
@@ -27,6 +32,16 @@
                 </div> 
             {% endif %}
         </form>
+
+        <script>
+            $('form').submit(function() {
+                $(this).find("button[type='submit']").prop('disabled',true);
+            });
+
+            if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            } 
+        </script>
 
     </section> 
 

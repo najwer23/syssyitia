@@ -7,6 +7,10 @@
 <link href="{{ asset('CSS/firstPage/firstPageNav.css') }}" rel="stylesheet" />
 {% endblock %}
 
+{% block javascripts %}
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+{% endblock %}
+
 {% block body %}
 
     <section class="loginForm">
@@ -43,24 +47,18 @@
                 </div> 
             {% endif %}
 
-            {# csrf protection #}
-            {# <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"> #}
-
-             {#
-                If you want to control the URL the user
-                is redirected to on success (more details below)
-                <input type="hidden" name="_target_path" value="/account" />
-              #}
-
-            {# {% if error %}
-                <div class="error">
-                    <i class="fas fa-exclamation-triangle"></i> Błędne dane logowania!
-                </div> 
-            {% endif %} #}
         </form>
 
-        {# <div class="link"><a href="/">Zapomniałem hasła</a></div>
-        <div class="link"><a href="/">Załóż konto</a></div> #}
+        <script>
+            $('form').submit(function() {
+                $(this).find("button[type='submit']").prop('disabled',true);
+            });
+
+            if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            } 
+        </script>
+
     </section> 
 
 {% endblock %}
