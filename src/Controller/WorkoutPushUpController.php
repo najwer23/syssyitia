@@ -88,7 +88,6 @@ class WorkoutPushUpController extends AbstractController
                         $errorCode=1;
                         $error="Test zapisany!";
                         
-
                     }
                    
                  
