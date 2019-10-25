@@ -224,6 +224,8 @@ class LoginController extends AbstractController
 
                         //zmien token zeby wygasl link od email
                         $user->setActiveTokenMail(-42);
+                        //aktywuj konto jesli nie bylo aktywowane / zguba linka aktywacyjnego? 
+                        $user->setIsActive(true);
                         $manager->flush();
 
                         return $this->redirectToRoute('changePassAfter', array(
